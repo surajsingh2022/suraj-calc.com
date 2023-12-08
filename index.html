@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+</head>
+<style>
+    table {
+        /* border: 1px black solid; */
+        border-radius: 5px;
+        height: 400px;
+        align-items: center;
+
+        width: 400px;
+    }
+
+    .input-button {
+        background-color: red;
+        width: 100%;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5%;
+        height: 100%;
+    }
+
+
+    td {
+        /* height: 90px; */
+        height: 50px;
+        width: 50px;
+        margin: 0px;
+        /* background-color: yellow; */
+
+
+    }
+
+    input {
+        height: 100%;
+        background-color: rgb(237, 36, 70);
+        border: none;
+        border-radius: 8px;
+        /* width: 96.9%; */
+        width: 97.5%;
+        /* box-shadow: 0px 10px 10px gray; */
+        font-size: 30px;
+        margin: 10px;
+        padding-inline-start: 2%;
+        animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+        0% {
+            background-color: rgb(255, 0, 0);
+        }
+
+        25% {
+            background-color: rgb(241, 14, 52);
+        }
+
+        50% {
+            background-color: rgb(234, 30, 64);
+        }
+    }
+
+
+
+    .long {
+        position: relative;
+        height: 100%;
+    }
+
+    div {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <div>
+        <table border="0" cellspacing="0" class="calculator">
+            <tr>
+                <td colspan="4"> <input id="input" type="text"></td>
+            </tr>
+            <tr>
+                <td><input onclick="clean()" class="input-button" type="button" value="AC"></td>
+                <td><input onclick="backspace()" class="input-button" type="button" value="C"></td>
+                <td><input onclick="AT('*')" class="input-button" type="button" value="x"></td>
+                <td><input onclick="AT('/')" class="input-button" type="button" value="/"></td>
+
+            </tr>
+            <tr>
+                <td><input onclick="AT(1)" class="input-button" type="button" value="1"></td>
+                <td><input onclick="AT(2)" class="input-button" type="button" value="2"></td>
+                <td><input onclick="AT(3)" class="input-button" type="button" value="3"></td>
+                <td><input onclick="AT('-')" class="input-button" type="button" value="-"></td>
+            </tr>
+            <tr>
+                <td><input onclick="AT(4)" class="input-button" type="button" value="4"></td>
+                <td><input onclick="AT(5)" class="input-button" type="button" value="5"></td>
+                <td><input onclick="AT(6)" class="input-button" type="button" value="6"></td>
+                <td rowspan="2"><input onclick="AT('+')" class="input-button long" type="button" value="+"></td>
+            </tr>
+            <tr>
+                <td><input onclick="AT(7)" class="input-button" type="button" value="7"></td>
+                <td><input onclick="AT(8)" class="input-button" type="button" value="8"></td>
+                <td><input onclick="AT(9)" class="input-button" type="button" value="9"></td>
+            </tr>
+            <tr>
+                <td><input onclick="AT(0)" class="input-button" type="button" value="0"></td>
+                <td><input onclick="AT('.')" class="input-button" type="button" value="."></td>
+                <td colspan="2"><input onclick="caluclateresult(0)" class="input-button" type="button" value="="></td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+<script>
+    var val = document.getElementById('input');
+    function AT(v) {
+        if (val.value == '0') {
+            val.value += v;
+        }
+        else {
+            val.value += v;
+        }
+    }
+    function caluclateresult() {
+        try {
+            val.value = eval(val.value);
+        } catch (error) {
+            val.value = "Error";
+            // if (val.value == 'Error') {
+            //     setInterval(() => {
+            //         val.value = 0;
+            //     }, 3000);
+            // }
+        }
+    }
+    function backspace() {
+        var currentdisplay = document.getElementById("input").value;
+        document.getElementById("input").value = currentdisplay.slice(0, 1);
+    }
+    function clean() {
+        val.value = 0;
+    }
+
+    function setzero() {
+        val.value = 0;
+    }
+</script>
+
+</html>
